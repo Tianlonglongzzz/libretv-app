@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no"
+    />
+    <meta name="theme-color" content="#0b0f19" />
+    <title>LibreTV</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">LibreTV</div>
+      <nav class="tabs">
+        <button class="tab active" data-view="search">搜索</button>
+        <button class="tab" data-view="sources">源管理</button>
+        <button class="tab" data-view="history">历史</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 搜索 -->
+      <section id="view-search" class="view active">
+        <form id="search-form" class="searchbar">
+          <input
+            id="search-input"
+            type="search"
+            placeholder="输入片名搜索…"
+            autocomplete="off"
+            autocorrect="off"
+          />
+          <button type="submit">搜索</button>
+        </form>
+        <div id="search-status" class="status"></div>
+        <div id="results" class="grid"></div>
+      </section>
+
+      <!-- 源管理 -->
+      <section id="view-sources" class="view">
+        <div class="panel">
+          <div class="panel-head"><span>导入源</span></div>
+          <label class="label">订阅地址（支持 TVBox 多仓清单 / 单仓配置 / LibreTV 源列表）</label>
+          <div class="row">
+            <input id="sub-url" type="url" placeholder="https://…/xxx.json" />
+            <button id="import-url-btn" type="button" class="primary">导入</button>
+          </div>
+          <label class="label">或粘贴单个采集接口地址</label>
+          <div class="row">
+            <input id="api-url" type="url" placeholder="https://xxx/api.php/provide/vod" />
+            <button id="add-api-btn" type="button">添加</button>
+          </div>
+          <div id="source-status" class="status"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span>我的源</span>
+            <span id="source-count" class="muted"></span>
+          </div>
+          <ul id="source-list" class="list"></ul>
+          <div id="source-empty" class="status">还没有源，先用上面任意一种方式加一个</div>
+        </div>
+      </section>
+
+      <!-- 历史 -->
+      <section id="view-history" class="view">
+        <ul id="history-list" class="list"></ul>
+        <div id="history-empty" class="status">还没有观看记录</div>
+      </section>
+    </main>
+
+    <!-- 详情 / 播放 覆盖层 -->
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-head">
+        <button id="overlay-back" type="button">← 返回</button>
+        <span id="overlay-title"></span>
+      </div>
+      <div id="overlay-body" class="overlay-body"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
